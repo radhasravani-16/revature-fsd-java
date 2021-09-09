@@ -5,8 +5,8 @@ public class AreaofRectangle {
 		
 		int length = 13;
 		int breadth =14;
-		int Area = length * breadth;
-		System.out.println("Area = " + Area);
+		int area = length * breadth;
+		System.out.println("Area = " + area);
 
 		}
 }
