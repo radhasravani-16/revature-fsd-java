@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Window</title>
+    </head>
+    <body>
+        <p id="para">This is a paragraph.</p>
+        <p>Another Para.</p>
+        <script>
+            //element will contain HTML Element obj.
+            var element = window.document.getElementById("para");
+            console.log(element.innerText);
+            element.innerText = "New Paragraph context."
+        </script>
+    </body>
+</html>
