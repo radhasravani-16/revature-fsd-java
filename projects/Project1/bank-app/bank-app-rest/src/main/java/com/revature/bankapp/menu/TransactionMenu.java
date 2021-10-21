@@ -39,80 +39,81 @@ public class TransactionMenu extends Menu {
 		AccountDaoImpl accountdao = new AccountDaoImpl();
 		switch (selection) {
 
-		case 1:
-			try {
-				System.out.println("Enter amount to withdraw: ");
-				double amount = sc.nextDouble();
-				accountdao.currentAccount().withdraw(amount);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			cmm.displayMenuAndCaptureSelection();
-			break;
+//		case 1:
+//			try {
+//				System.out.println("Enter amount to withdraw: ");
+//				double amount = sc.nextDouble();
+//				accountdao.currentAccount().withdraw(amount);
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 2:
+//
+//			try {
+//				System.out.println("Enter amount to deposit: ");
+//				double amount = sc.nextDouble();
+//				accountdao.currentAccount().deposit(amount);
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 3:
+//			try {
+//				AccountDaoImpl.currentAccount();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			DisplayTransaction.TransactionList();
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 4:
+//			try {
+//				double balance = accountdao.currentAccount().getBalance();
+//				System.out.println("Balance: " + balance);
+//			} catch (SQLException e1) {
+//				e1.printStackTrace();
+//			}
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 5:
+//			System.out.println("Enter Account Number of receiver: ");
+//			transferAccNum = sc.nextLine();
+//			System.out.println("Enter amount to transfer: ");
+//			double amount = sc.nextDouble();
+//			try {
+//				accountdao.currentAccount().withdraw(amount);
+//				System.out.println("Initiated");
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				System.out.println("withdraw failed");
+//			}
+//			try {
+//				accountdao.transferAccount().transfer(amount);
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				System.out.println("deposit failed");
+//			}
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 6:
+//			cmm.displayMenuAndCaptureSelection();
+//			break;
+//
+//		case 7:
+//			CustomerMainMenu cm = new CustomerMainMenu("Customer Menu");
+//			cm.displayMenuAndCaptureSelection();
+//		}
+//
+}
 
-		case 2:
-
-			try {
-				System.out.println("Enter amount to deposit: ");
-				double amount = sc.nextDouble();
-				accountdao.currentAccount().deposit(amount);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			cmm.displayMenuAndCaptureSelection();
-			break;
-
-		case 3:
-			try {
-				AccountDaoImpl.currentAccount();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			DisplayTransaction.TransactionList();
-			cmm.displayMenuAndCaptureSelection();
-			break;
-
-		case 4:
-			try {
-				double balance = accountdao.currentAccount().getBalance();
-				System.out.println("Balance: " + balance);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			cmm.displayMenuAndCaptureSelection();
-			break;
-
-		case 5:
-			System.out.println("Enter Account Number of receiver: ");
-			transferAccNum = sc.nextLine();
-			System.out.println("Enter amount to transfer: ");
-			double amount = sc.nextDouble();
-			try {
-				accountdao.currentAccount().withdraw(amount);
-				System.out.println("Initiated");
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("withdraw failed");
-			}
-			try {
-				accountdao.transferAccount().transfer(amount);
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("deposit failed");
-			}
-			cmm.displayMenuAndCaptureSelection();
-			break;
-
-		case 6:
-			cmm.displayMenuAndCaptureSelection();
-			break;
-
-		case 7:
-			CustomerMainMenu cm = new CustomerMainMenu("Customer Menu");
-			cm.displayMenuAndCaptureSelection();
-		}
-
-	}
-
+}
 }

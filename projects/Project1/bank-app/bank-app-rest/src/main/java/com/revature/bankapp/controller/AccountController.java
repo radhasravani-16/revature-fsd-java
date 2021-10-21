@@ -1,8 +1,14 @@
 package com.revature.bankapp.controller;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -10,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.revature.bankapp.dao.impl.AccountDaoImpl;
+import com.revature.bankapp.dao.impl.CustomerDaoImpl;
 import com.revature.bankapp.exception.AppException;
 import com.revature.bankapp.model.Account;
 
@@ -32,6 +39,43 @@ public class AccountController {
 		} catch (AppException e) {
 			return Response.status(500).build();
 		}
+	}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get() {
+		try {
+			List<Account> accountList;
+			accountList = dao.accountList();
+			System.out.println(CustomerDaoImpl.currentCustomerId);
+			return Response
+					.ok()
+					.entity(accountList)
+					.build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+
+	}
+	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get(@PathParam("id") int id) {
+		try {
+			List<Account> accountList;
+			accountList = dao.accountList(id);
+			System.out.println(id);
+//			System.out.println(AccountDaoImpl.currentAccountId);
+			return Response
+					.ok()
+					.entity(accountList)
+					.build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+
 	}
 		
 }

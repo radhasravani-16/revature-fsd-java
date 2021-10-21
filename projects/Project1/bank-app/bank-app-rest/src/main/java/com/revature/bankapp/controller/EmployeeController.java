@@ -1,6 +1,7 @@
 package com.revature.bankapp.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,17 +15,20 @@ import com.revature.bankapp.dao.impl.EmployeeDaoImpl;
 
 import com.revature.bankapp.model.Employee;
 
-@Path("/employees/{username}/{password}")
+import com.revature.bankapp.model.Customer;
+
+@Path("/employees")
 public class EmployeeController {
 	@GET
-//	@Path("/{userName}/{password}")
+	@Path("/{userName}/{password}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response get(@PathParam("username") String username, @PathParam("password")  String password) {
-		System.out.println("Employee userName: " + username);
+	public Response get(@PathParam("userName") String userName, @PathParam("password")  String password) {
+		System.out.println("Employee userName: " + userName);
+		System.out.println("Employee password: " + password);
 		try {
 		
 		   EmployeeDaoImpl empl = new EmployeeDaoImpl();
-			Employee employee = empl. getEmployeeUserName(username);
+			Employee employee = empl. getEmployeeUserName(userName);
 			if (employee == null) {
 				return Response.status(401).build();
 			}
@@ -42,7 +46,46 @@ public class EmployeeController {
 			e.printStackTrace();
 			return Response.status(500).build();
 		}
-	
-  
   }
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get() {
+		try {
+			List<Customer> viewCustomer;
+			 EmployeeDaoImpl empl = new EmployeeDaoImpl();
+			 viewCustomer = empl.viewCustomer();
+			
+			System.out.println(viewCustomer);
+			return Response
+					.ok()
+					.entity(viewCustomer)
+					.build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+
+	}
+	
+	@GET
+	@Path("/accounts/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get(@PathParam("id") int id) {
+		try {
+			List<Customer> viewCustomer;
+			 EmployeeDaoImpl empl = new EmployeeDaoImpl();
+			 viewCustomer = empl.eViewAccount(id);
+			
+			System.out.println(viewCustomer);
+			return Response
+					.ok()
+					.entity(viewCustomer)
+					.build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return Response.status(500).build();
+		}
+
+	}
 }

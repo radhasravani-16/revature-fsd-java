@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="css/style.css">
 
     <title>Bank App</title>
+    <style>
+        .csi{
+            background-image: url("https://cdn.pixabay.com/photo/2017/01/06/23/05/morgenstimmung-1959233_960_720.jpg");
+               
+                height: 800px;
+                background-position: center;
+                /* background-repeat: no-repeat;  */
+                background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,35 +28,34 @@
             <h3 style="color:blue">ReserveBank</h3>
 
             <a href="home.html" class="btn btn-secondary">Home</a>
-            <a href="createacc.html" class="btn btn-secondary">Create Account</a>
             <a href="customerlogin.html" class="btn btn-secondary">Customer Login</a><br><br><br><br>
 
         </div>
     </nav>
     <div class="csi">
         <h3>Customer Signup</h3><br><br>
-        <form>
+        <form id="formm">
             <div>
-                <label for="fn">FirstName:</label>
+                <label for="fn">FirstName:</label><br>
                 <input type="text" id="fn" name="fn" placeholder="Enter Your First Name"><br><br>
                 <div id="firstNameError" class="validation-error"></div>
 
-                <label for="ln">LastName:</label>
+                <label for="ln">LastName:</label><br>
                 <input type="text" id="ln" name="ln" placeholder="Enter Your Last Name"><br><br>
-                <div id="lastNameEror" class="validation-error"></div>
+                <div id="lastNameError" class="validation-error"></div>
 
-                <label for="email">Email: </label>
+                <label for="email">Email: </label><br>
                 <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.9.-]+\.[a-z]{2,}$"
                     title="Enter valid Email." name="email" placeholder="Enter Your Email"><br><br>
 
                 <div id="emailValidation" class="validation-error"></div>
 
-                <label for="ps">Password:</label>
+                <label for="ps">Password:</label><br>
                 <input type="password" id="ps" name="ps" placeholder="Enter Your Password"><br><br>
                 <div id="passwordValidation" class="validation-error"></div>
 
                 <!-- <a href=""><input type="submit" id="but" class="btn btn-primary" value="Signup"></a> -->
-                <button type="button" id="but" class="btn btn-primary" >SignUp</button>
+                <!-- <button type="button" id="sub" class="btn btn-primary" >SignUp</button> -->
 
 
 
@@ -56,10 +65,10 @@
         </form>
 
 
-        <!-- <div class="container">
+        <div class="container">
 
 
-            <button type="button" id="but" class="btn btn-info btn-lg" data-toggle="modal"
+            <button type="button" id="sub" class="btn btn-primary" data-toggle="modal"
                 data-target="#myModal">SignUp</button>
 
 
@@ -72,18 +81,18 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                         </div>
-                        <div class="modal-body">
-                            <p> Your Are Successfully Registered </p>
+                        <div class="modal-body" id="Error">
+                            <p></p>
                         </div>
                         <div class="modal-footer">
-                            <a href="CustomerLogin.html"><input type="submit" value="Close"></a>
+                            <a href="CustomerLogin.html" id="close"></a>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-        </div> -->
+        </div>
 
 
 

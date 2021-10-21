@@ -38,7 +38,74 @@ public class AccountDaoImpl implements AccountDao{
 			throw new AppException(e);
 		}
 	}
+	public void insert(Transactions transaction) throws SQLException {
+		try (Connection connection = Util.getConnection()) {
+			String sql = "insert into transaction (type, amount, accountid) values (?, ?, ?)";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, String.valueOf(transaction.getType()));
+			statement.setDouble(2, transaction.getAmount());
+			statement.setInt(3, currentAccountId);
+			statement.executeUpdate();
 
+		}
+
+	}
+
+	public void update(Account account) throws SQLException {
+		try (Connection connection = Util.getConnection()) {
+			String sql = "update account set balance = ? where id = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setDouble(1, account.getBalance());
+			statement.setInt(2, currentAccountId);
+			statement.executeUpdate();
+		}
+
+	}
+
+	public static List<Transactions> transactionList(int id) throws SQLException {
+		List<Transactions> transactionList = new ArrayList<>();
+		try (Connection connection = Util.getConnection()) {
+			String sql = "select * from transaction where accountid = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			
+
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Transactions t = new Transactions();
+				t.setType(resultSet.getString("type").charAt(0));
+				t.setAmount(resultSet.getDouble("amount"));
+				t.setAccountId(resultSet.getInt("accountId"));
+				transactionList.add(t);
+
+			}
+		}
+
+		return transactionList;
+	}
+
+
+	public List<Account> accountList(int id) throws SQLException {
+		List<Account> accountList = new ArrayList<>();
+		try (Connection connection = Util.getConnection()) {
+			String sql = "select * from account where customerid = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Account account = new Account();
+				account.setAccountNumber(resultSet.getString("accountnumber"));
+				account.setBalance(resultSet.getDouble("balance"));
+				account.setId(resultSet.getInt("id"));
+				accountList.add(account);
+
+			}
+		}
+
+		return accountList;
+
+	}
+	
 	public List<Account> accountList() throws SQLException {
 		List<Account> accountList = new ArrayList<>();
 		try (Connection connection = Util.getConnection()) {
@@ -50,6 +117,7 @@ public class AccountDaoImpl implements AccountDao{
 				Account account = new Account();
 				account.setAccountNumber(resultSet.getString("accountnumber"));
 				account.setBalance(resultSet.getDouble("balance"));
+				account.setId(resultSet.getInt("id"));
 				accountList.add(account);
 
 			}
@@ -59,12 +127,12 @@ public class AccountDaoImpl implements AccountDao{
 
 	}
 	
-	public static Account currentAccount() throws SQLException {
+	public static Account currentAccount(String accNum) throws SQLException {
 		Account account = null;
 		try (Connection connection = Util.getConnection()) {
 			String sql = "select * from account where accountnumber = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(1, TransactionMenu.accNumber);
+			statement.setString(1, accNum);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				currentAccountId = resultSet.getInt("id");

@@ -1,0 +1,40 @@
+<div class="movie-card">
+    <!-- <input type="text" [value]="movie.title"> -->
+    <div class="movie-title">
+        {{movie.title}}
+        <span class="movie-year">({{movie.releaseDate}})</span>
+    </div>
+    <span class="movie-genre" *ngFor="let genre of movie.genres">
+        {{genre.name}}
+    </span>
+    <div class="movie-details">
+        <span>{{movie.mpaaRating.name}}</span> |
+        <span>{{movie.rating}}</span> |
+        <span>{{movie.duration}}</span> |
+        <span>{{movie.budget | currency:'USD':'symbol':'3.0'}}</span>
+    </div>
+    <span *ngIf="movie.bookingsOpen" class="booking-open">
+        Bookings Open
+    </span>
+    <span *ngIf="!movie.bookingsOpen" class="booking-closed">
+        Bookings Closed
+    </span>
+    
+    <span [ngClass]="movie.bookingsOpen ? 'booking-open' : 'booking-closed'">
+        Bookings
+    </span>
+    
+    <span [ngStyle]="{ 'color' : movie.bookingsOpen ? 'green' : 'red'}">
+        Bookings
+    </span>
+
+    <span class="favorite" *ngIf="!movie.favorite" (click)="toggleFavorite()">
+        <i class="material-icons">favorite_border</i>
+    </span>
+    <span class="favorite-selected" *ngIf="movie.favorite" (click)="toggleFavorite()">
+        <i class="material-icons">favorite</i>
+    </span>
+    <div>
+        <input type="button" value="Edit" (click)="showEdit()">
+    </div>
+</div>

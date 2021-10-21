@@ -7,6 +7,7 @@ import com.revature.bankapp.model.Account;
 //import com.revature.bankapp.account.ViewAccount;
 import com.revature.bankapp.dao.impl.AccountDaoImpl;
 import com.revature.bankapp.display.DisplayAccounts;
+import com.revature.bankapp.exception.AppException;
 
 
 public class CustomerMainMenu extends Menu {
@@ -47,7 +48,7 @@ public class CustomerMainMenu extends Menu {
 			
 			try {
 				accountdao.create(new Account(accountNumber,balance));
-			} catch (SQLException e) {
+			} catch (AppException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

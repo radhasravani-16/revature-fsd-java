@@ -45,8 +45,8 @@ public class CustomerController {
 		System.out.println("Customer email: " + email);
 		try {
 
-			CustomerDaoImpl cdao = new CustomerDaoImpl();
-			Customer customer = cdao.getCustomerEmail(email);
+			CustomerDaoImpl daoim = new CustomerDaoImpl();
+			Customer customer = daoim.getCustomerEmail(email);
 			if (customer == null) {
 				return Response.status(401).build();
 			} else if (customer.getPassword().equals(password)) {

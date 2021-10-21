@@ -14,18 +14,32 @@
             <h3 style="color:blue">ReserveBank</h3>
 
             <a href="home.html" class="btn btn-secondary">Home</a>
+            <a href="viewacc.html" class="btn btn-secondary">View Accounts</a>
             <a href="home.html" class="btn btn-secondary">Logout</a><br><br><br><br>
 
         </div>
     </nav>
-    <div class="container">
-        <h1>Withdraw Amount</h1>
-        <label for="fn">Enter Amount:</label>
-            <input type="text" id="fn" placeholder="Enter amount"><br><br>
-            <a href="#"><input type="submit" value="Procced"></a>
-        
+    <h1 id="success" class="alert alert success"></h1>
+    <div class="container ">
+            
+        <div id="error" class="alert alert warning"></div>
+        <div class="row justify-content-center align-items-center ">
+            <div class="card text-dark   mb-3 mb-3 col-12 col-lg-4">
+                <div class="card-header bg-transparent text-center" style="font-weight: bold;">Withdrawal</div>
+                <div class="card-body  justify-content-center align-items-center">
+                    <h5 class="card-title" id="setAccountNumber" style="text-align: center;">Enter Amount :</h5>
+                    <div class="row justify-content-center align-items-center "><input type="text" name="amount"
+                            id="amount" placeholder="Enter Amount Here"></div>
+                    <div id="amountError" class="validation-error"></div>
+                </div>
+                <div class="card-footer bg-transparent row  justify-content-center align-items-center  ">
+                    <input type="button" id="withdraw" value="Withdraw">
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+<script src="scripts.js/withdraw.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

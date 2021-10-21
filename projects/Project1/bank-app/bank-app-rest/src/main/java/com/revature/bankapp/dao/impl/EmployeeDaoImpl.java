@@ -29,7 +29,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String name = resultSet.getString("name");
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
-
 				employee = new Employee(name, username, password);
 			}
 		}
@@ -59,21 +58,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	}
 
-	public static List eViewAccount() throws SQLException {
+	public static List eViewAccount(int id) throws SQLException {
 		List<Account> accountList = new ArrayList<>();
 		try (Connection connection = Util.getConnection()) {
-			String sql = "select c.id, c.FirstName,c.LastName,c.Email,accountnumber, balance from account\r\n"
-					+ " inner join customer c on customerid = c.id;";
+			String sql = "select * from account where customerid= ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1,id);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Account accountTemp = new Account();
 
 				accountTemp.setId(resultSet.getInt("id"));
-				accountTemp.setFirstName(resultSet.getString("firstname"));
-				accountTemp.setLastName(resultSet.getString("lastname"));
-				accountTemp.setEmail(resultSet.getString("email"));
-				// accountTemp.setPhoneno(resultSet.getString("Phoneno"));
+				
 				accountTemp.setAccountNumber(resultSet.getString("accountnumber"));
 				accountTemp.setBalance(resultSet.getDouble("balance"));
 
@@ -106,6 +102,26 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			}
 		}
 		return transactionList;
+
+	}
+	@Override
+	public List<Customer> viewCustomer() throws SQLException {
+		List<Customer> customerList = new ArrayList<>();
+
+		try (Connection connection = Util.getConnection()) {
+			String sql = "select * from customer";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Customer customerTemp = new Customer();
+				customerTemp.setFirstName(resultSet.getString("firstname"));
+				customerTemp.setLastName(resultSet.getString("lastname"));
+				customerTemp.setEmail(resultSet.getString("email"));
+				customerList.add(customerTemp);
+
+			}
+			return customerList;
+		}
 
 	}
 }

@@ -40,12 +40,8 @@ public class CustomerDaoImpl implements CustomerDao {
 			return 0;
 		}catch (SQLException e) {
 			LOGGER.error("Error inserting customer",e);
-			throw new AppException(e);
-		
-			
+			throw new AppException(e);	
 		}
-		
-
 	}
 
 	public Customer getCustomerEmail(String Email) throws SQLException {
@@ -68,7 +64,6 @@ public class CustomerDaoImpl implements CustomerDao {
 			}
 		}
 		return customer;
-
 	}
 
 	public static List<Customer> customerList() throws SQLException {
@@ -84,8 +79,6 @@ public class CustomerDaoImpl implements CustomerDao {
 				c.setLastName(resultSet.getString("LastName"));
 				c.setEmail(resultSet.getString("Email"));
 				//c.setPhoneno(resultSet.getString("Phoneno"));
-				
-
 				customerList.add(c);
 
 			}

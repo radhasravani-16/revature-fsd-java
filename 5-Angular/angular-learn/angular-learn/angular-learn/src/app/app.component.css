@@ -1,0 +1,13 @@
+a:visited {
+    color: blue
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer
+}
+
+.active-link {
+    border-bottom: solid 1px blue
+}

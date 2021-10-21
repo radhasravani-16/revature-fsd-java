@@ -1,0 +1,10 @@
+<h1>Edit Movie</h1>
+<form #movieForm="ngForm" (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="movie.title" name="title" #title="ngModel" required minlength="2" maxlength="30">
+    <div class="error" *ngIf="title.invalid">
+        <div *ngIf="title.errors?.required">Title is required</div>
+        <div *ngIf="title.errors?.minlength">Title should be at least 2 characters.</div>
+        <div *ngIf="title.errors?.maxlength">Title cannot exceed 30 characters.</div>
+    </div>
+    <input type="submit" [disabled]="!movieForm.valid" value="Save">
+</form>

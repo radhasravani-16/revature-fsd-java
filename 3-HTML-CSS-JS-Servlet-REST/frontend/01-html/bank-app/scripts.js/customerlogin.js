@@ -1,5 +1,5 @@
 let email= document.getElementById("email");
-let pass = document.getElementById("password");
+let pass = document.getElementById("ps");
 let form = document.getElementById("frm");
 let login = document.getElementById("sub");
 
@@ -10,15 +10,24 @@ async function loginCustomer(){
 try {
     let response = await fetch("http://localhost:8080/bank-app-rest/customers/"+email.value+"/"+pass.value);
      if(response.status == "401"){
-         alert(" login failed");
-         console.log("defvr");
+        //alert("Login Failed");
+        let display = document.getElementById("dis");
+        display.innerText = "Login Failed";
+        
      }
      if(response.status == 200){
-        alert(" login successfull");
-         //display
+        let display = document.getElementById("dis");
+        display.innerText = "Login Success";
+       //alert("Login Success");
+      document.location = "Customer.html";
+
+        
      }
      if(response.status == "500"){
-        alert(" error");
+        let display = document.getElementById("dis");
+        display.innerText = " Internal Error";
+       
+        //alert(" error");
          //display
      }
      
@@ -28,7 +37,22 @@ try {
 }
 }
 login.addEventListener("click",function(){
-    
-     loginCustomer();
+   //     console.log(form.email.value);
+   // console.log(form.password.value);
+       
+        loginCustomer();
+   
+   
+   
+   
+   
+   });
 
-});
+   login.addEventListener("click",function(){
+      if(email.value == "" || pass.value == ""){
+          let display = document.getElementById("dis");
+          display.innerText = "Enter all the Fields";
+         
+      }
+     
+  });

@@ -3,6 +3,7 @@ package com.revature.bankapp.model;
 import java.util.Scanner;
 
 public class Customer {
+	
 	private long id;
 	private String firstName;
 	private String lastName;
