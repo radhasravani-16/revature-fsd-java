@@ -3,8 +3,6 @@ let pass = document.getElementById("ps");
 let form = document.getElementById("frm");
 let login = document.getElementById("sub");
 
-
-
 async function loginCustomer(){
 
 try {
@@ -41,11 +39,6 @@ login.addEventListener("click",function(){
    // console.log(form.password.value);
        
         loginCustomer();
-   
-   
-   
-   
-   
    });
 
    login.addEventListener("click",function(){
